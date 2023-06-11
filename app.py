@@ -2,9 +2,13 @@ from flask import Flask, request, jsonify
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import os
+from dotenv import load_dotenv
 
-username = os.environ.get("DB_USERNAME")
-password = os.environ.get("DB_PASSWORD")
+load_dotenv()
+
+username = os.getenv("DB_USERNAME")
+password = os.getenv("DB_PASSWORD")
+
 
 uri = f"mongodb://{username}:{password}@localhost:27017/"
 # uri = "mongodb://hopesath:mongodb123@localhost:27017/"
