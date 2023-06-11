@@ -59,11 +59,13 @@ def adduser():
         return 'Content-Type not supported!'
     
 ## Find a User
-@app.route('/findUser', methods=["POST"])
+@app.route('/findUser', methods=["GET"])
 def findUser():
     content_type = request.headers.get('Content-Type')
-    if (content_type == 'application/json' and request.method == "POST"):
+    if (content_type == 'application/json' and request.method == "GET"):
         json = request.get_json()
+        print(json)
+        # print(firstname)
         firstname = json["firstname"]
         query = {"Firstname": firstname}
         projection = {"_id": 0, "Firstname": 1, "Lastname": 1, "Email": 1, "Phone Number": 1}
@@ -75,11 +77,11 @@ def findUser():
 
 
 ## Update user info
-@app.route('/updateUser', methods=["POST"])
+@app.route('/updateUser', methods=["PUT"])
 def updateUser():
     # new_users = dict()
     content_type = request.headers.get('Content-Type')
-    if (content_type == 'application/json' and request.method == "POST"):
+    if (content_type == 'application/json' and request.method == "PUT"):
         json = request.get_json()
         firstname = json["firstname"]
         email = json["email"]
@@ -95,11 +97,11 @@ def updateUser():
         return 'Content-Type not supported!'
     
 ## Deletes a user
-@app.route('/deleteUser', methods=["POST"])
+@app.route('/deleteUser', methods=["DELETE"])
 def deleteUser():
     old_users = dict()
-    # content_type = request.headers.get('Content-Type')
-    if request.method == "POST":
+    content_type = request.headers.get('Content-Type')
+    if (content_type == 'application/json' and request.method == "DELETE"):
         json = request.get_json()
         firstname = json["firstname"]
         email = json["email"]
