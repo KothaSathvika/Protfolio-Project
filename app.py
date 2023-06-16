@@ -3,6 +3,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -27,6 +28,7 @@ db = client.user_info
 collection = db.Backend_Practice
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/test', methods=['POST'])
 def process_json():
@@ -42,23 +44,26 @@ def process_json():
 def adduser():
     new_users = dict()
     content_type = request.headers.get('Content-Type')
+    print(content_type)
     if (content_type == 'application/json' and request.method == "POST"):
         json = request.get_json()
+        print(json)
         firstname = json["firstname"]
+        # print("firstname")
         lastname = json["lastname"]
         email = json["email"]
-        phone_number = json["phone_number"]
+        phone_number = json["phonenumber"]
         new_users["Firstname"], new_users["Lastname"], new_users["Email"], new_users["Phone Number"] = firstname, lastname, email, phone_number
         try:
             collection.insert_one(new_users)
-            return "User information inserted successfully!"
+            return ({"message": "User information inserted successfully!"})
         except Exception as e:
             return "An error occurred during user insertion: " + str(e)
         
     else:
         return 'Content-Type not supported!'
     
-## Find a User
+# Find a User
 @app.route('/findUser', methods=["GET"])
 def findUser():
     content_type = request.headers.get('Content-Type')
@@ -111,5 +116,5 @@ def deleteUser():
         
     else:
         return 'Content-Type not supported!'
-    
-app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(debug=True)
