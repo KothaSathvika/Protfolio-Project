@@ -9,12 +9,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CreateComponent } from './create/create.component';
 import { SelectComponent } from './select/select.component';
+import { UpdateComponent } from './update/update.component';
+import { FindComponent } from './find/find.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
-    SelectComponent
+    SelectComponent,
+    UpdateComponent,
+    FindComponent
   ],
   imports: [
     BrowserModule,

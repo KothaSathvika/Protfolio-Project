@@ -40,9 +40,10 @@ export class CreateComponent{
     console.log(this.firstname);
     console.log(this.lastname);
     console.log(this.userForm.value);
-    console.log(JSON.stringify(this.userForm.value))
+    console.log(JSON.stringify(this.userForm.value));
 
-    this.auth.send_post_request(this.userForm.value).subscribe()
+    this.auth.send_post_request(this.userForm.value).subscribe();
+    this.userForm.reset();
   }
 
   validate() {

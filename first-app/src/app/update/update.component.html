@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup] = "updateForm" method="put">
+        <div class="formGroup">
+            <label class="form-heading">First Name</label><br>
+            <input type="name" class="form-control" id="firstname" placeholder="Enter Firstname" formControlName="firstname"
+                name="firstname" required/>
+        </div>
+        <pre></pre>
+        <div class = "formGroup">
+            <label class="form-heading">Email</label><br>
+            <input type="email" class="form-control" id="email" placeholder="Enter Email" formControlName="email"
+                name="email" required/>
+        </div>
+        <pre></pre>
+        <button class="btn btn-primary" (click)="process()" type="submit">Update</button>
+    </form>
+</div>>

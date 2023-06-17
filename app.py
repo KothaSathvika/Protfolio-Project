@@ -39,7 +39,7 @@ def process_json():
     else:
         return 'Content-Type not supported!'
 
-## Adds User
+## Adds Usern
 @app.route('/addUser', methods=["POST"])
 def adduser():
     new_users = dict()
@@ -68,17 +68,18 @@ def adduser():
 def findUser():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json' and request.method == "GET"):
-        json = request.get_json()
-        print(json)
+        firstname = request.args.get('firstname')
+        # json = json.to_dict()
         # print(firstname)
-        firstname = json["firstname"]
+        # print(json)
+        # firstname = json["firstname"]
         query = {"Firstname": firstname}
         projection = {"_id": 0, "Firstname": 1, "Lastname": 1, "Email": 1, "Phone Number": 1}
         data = collection.find_one(query, projection)
         return jsonify(data)
                
     else:
-        return 'Content-Type not supported!'
+        return {"message" : 'Content-Type not supported!'}
 
 
 ## Update user info
@@ -96,7 +97,7 @@ def updateUser():
 
         collection.update_one(query, new)
         
-        return "updated user information successfully"
+        return ({"message": "User information updated successfully!"})
         
     else:
         return 'Content-Type not supported!'
