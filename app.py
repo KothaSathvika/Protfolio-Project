@@ -108,14 +108,15 @@ def deleteUser():
     old_users = dict()
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json' and request.method == "DELETE"):
-        json = request.get_json()
-        firstname = json["firstname"]
-        email = json["email"]
+        firstname = request.args.get('firstname')
+        email = request.args.get('email')
+        # firstname = json["firstname"]
+        # email = json["email"]
         old_users["Firstname"], old_users["Email"] = firstname, email
         collection.delete_one(old_users)
-        return "Deleted user information successfully"
+        return {"message": "Deleted user information successfully"}
         
     else:
-        return 'Content-Type not supported!'
+        return {"message" : 'Content-Type not supported!'}
 if __name__ == "__main__":
     app.run(debug=True)

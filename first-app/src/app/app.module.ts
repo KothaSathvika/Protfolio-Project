@@ -11,6 +11,10 @@ import { CreateComponent } from './create/create.component';
 import { SelectComponent } from './select/select.component';
 import { UpdateComponent } from './update/update.component';
 import { FindComponent } from './find/find.component';
+import { DeleteComponent } from './delete/delete.component';
+// import { LoginComponent } from './login/login.component';
+// import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +22,18 @@ import { FindComponent } from './find/find.component';
     CreateComponent,
     SelectComponent,
     UpdateComponent,
-    FindComponent
+    FindComponent,
+    DeleteComponent,
+    // LoginComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [
     // UtilityService,
